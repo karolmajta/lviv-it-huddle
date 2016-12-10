@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Add some colision detection. You might want to play with the distance/threshold
+      so that collisions look more natural.
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var rudolphX;
+      var rudolphY;
+      var rudolphVelocity = 0;
+      var clouds = [
+        {x: 100, y: 100},
+        {x: 400, y: 120},
+        {x: 500, y: 400},
+        {x: 320, y: 500}
+      ];
+      var gameOver = false; // when we start, the game is not over!
+
+
+      function drawReindeer(reindeerX, reindeerY) {
+        // unchanged
+      }
+
+      function drawCloud(cloudX, cloudY) {
+        // unchanged
+      }
+
+      function setup() {
+        // unchanged
+      }
+
+      function draw()
+      {
+          background(255, 255, 255);
+          noStroke();
+
+          // remember to show "GAME OVER" text when game is over
+
+          drawReindeer(rudolphX, rudolphY);
+          rudolphY = rudolphY - rudolphVelocity;
+          if (rudolphY < 0) {
+            rudolphY = 0;
+          }
+          if (rudolphY > canvasHeight) {
+            rudolphY = canvasHeight;
+          }
+
+          for (var i=0; i < clouds.length; i = i+1) {
+            drawCloud(clouds[i].x, clouds[i].y);
+          }
+
+          // add your collision detection here
+      }
+
+      function keyPressed() {
+        // unnchanged
+      }
+
+      function keyReleased() {
+        // unchanged
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/exercise-8.js"></script>
+</body>
+</html>

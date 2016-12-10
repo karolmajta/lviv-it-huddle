@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Go ahead and create your drawReindeer stamp (function)! Then go crazy
+      with it and make as many reindeers in as many places as you wish!
+    </p>
+    <p>
+      You can use the template below to get you started.
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+
+      function drawReindeer(reindeerX, reindeerY) {
+        // here is where you describe how a reindeer is drawn!
+      }
+
+      function setup() {
+        var parent = document.getElementById('game-container');
+        canvasWidth = parent.clientWidth;
+        canvasHeight = parent.clientHeight;
+        var canvas = createCanvas(canvasWidth, canvasHeight);
+        canvas.parent('game-container');
+      }
+
+      function draw()
+      {
+          background(255, 255, 255);
+          noStroke();
+
+          // and this is where you use your stamp!
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/exercise-3.js"></script>
+</body>
+</html>

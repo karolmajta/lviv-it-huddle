@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Usually in games we deal with many things. One superhero fights many
+      villains, one care races agains many others etc. Up till now we only learned
+      how to deal with single things (santa). Let's say santa has to go through
+      a forest that has many trees. How do we represent this? I've told you
+      that variables (boxes) can contain many different things like text, numbers
+      or "stuff". Well, it turns out that "stuff" can be something called
+      <strong>array</strong>. Array is a list of many things (like you can make
+      a list of students in a class or a list of groceries).
+    </p>
+    <p>
+      To put an array of "stuff" into the box we just do
+      <pre>
+        var mybox = [1, 2, 3];
+      </pre>
+      This puts a list of numbers (1, 2, 3) into a box called "mybox".
+      It turns out, that it's often more convenient to put more complex stuff
+      on a list (i.e. when shopping you would like to put all items with their
+      prices on a list). We can do that!
+      <pre>
+        var shopping = [{name: "carrot", price: 20}, {name: "beer", price: 25}]
+      </pre>
+      This makes a list of something we call objects (you don't have to care about
+      it), it's important that each of items on a list has it's price and it's
+      name.
+    </p>
+    <p>
+      Nice thing about lists, is that we can handle all of their contents at once
+      (if you go shopping you don't buy carrots, and beer), you just buy everything
+      on a list, right? That's how you do it:
+      <pre>
+        for (var i=0; i&lt;shopping.lenght; i = i+1) {
+          buy(shopping[i]);
+        }
+      </pre>
+      So without further ado, let's put our Santa in a forest :)
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var santaX;
+      var santaY;
+      var santaVelocity = 0;
+      var trees = [
+        {x: 100, y: 100},
+        {x: 400, y: 120},
+        {x: 500, y: 400},
+        {x: 320, y: 500}
+      ];
+
+      function drawSanta(santaX, santaY) {
+        // draw the legs
+        fill(200, 0, 0);
+        rect(santaX-25, santaY+20 + 5*sin(0.2*santaX), 10, 30);
+        rect(santaX+15, santaY+20 + 5*cos(0.2*santaX), 10, 30);
+        // draw arms
+        fill(200, 0, 0);
+        rect(santaX-50, santaY-20, 100, 10);
+        // draw the head
+        fill(255, 227, 159);
+        rect(santaX-15, santaY-60, 30, 30);
+        // draw the torso
+        fill(230, 0, 0);
+        rect(santaX-30, santaY-30, 60, 60);
+        // draw the beard
+        fill("lightgrey");
+        rect(santaX-15, santaY-35, 30, 40);
+        // draw the hat
+        fill(230, 0, 0);
+        rect(santaX-20, santaY-75, 40, 20);
+        rect(santaX-30, santaY-85, 40, 10);
+      }
+
+      function drawTree(treeX, treeY) {
+        fill("black");
+        rect(treeX - 5, treeY - 15, 10, 30);
+        fill("darkgreen");
+        rect(treeX - 15, treeY - 5, 30, 10);
+        rect(treeX - 10, treeY - 15, 20, 10);
+        rect(treeX - 5, treeY - 25, 10, 10);
+      }
+
+      function setup() {
+        var parent = document.getElementById('game-container');
+        canvasWidth = parent.clientWidth;
+        canvasHeight = parent.clientHeight;
+        var canvas = createCanvas(canvasWidth, canvasHeight);
+        canvas.parent('game-container');
+        santaX = canvasWidth/2;
+        santaY = canvasHeight/2;
+      }
+
+      function draw() {
+          background(255, 255, 255);
+          noStroke();
+
+          // draw the trees
+          for (var i = 0; i < trees.length; i = i+1) {
+            drawTree(trees[i].x, trees[i].y);
+          }
+
+          drawSanta(santaX, santaY);
+
+          santaX = santaX + santaVelocity;
+          // keep santa in bounds of the board
+          if (santaX < 0) {
+            santaX = 0;
+          }
+          if (santaX > canvasWidth) {
+            santaX = canvasWidth;
+          }
+      }
+
+      function keyPressed() {
+        // make sure to decide which direction the santa should go!
+        // if user presses 'Z' he should go left (negative velocity), when
+        // user presses 'X' he should go right (positive velocity).
+        if (keyCode == 90) { // this is Z
+          santaVelocity = -2;
+        }
+        if (keyCode == 88) { // this is X
+          santaVelocity = 2;
+        }
+      }
+
+      function keyReleased() {
+        santaVelocity = 0;
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/example-7.js"></script>
+</body>
+</html>

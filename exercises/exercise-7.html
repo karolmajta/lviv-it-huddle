@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Wait no longer and add some clouds :)
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var rudolphX;
+      var rudolphY;
+      var rudolphVelocity = 0;
+      var clouds = [
+        // add as many clouds as you want!
+      ];
+
+
+      function drawReindeer(reindeerX, reindeerY) {
+        // this stays as before...
+      }
+
+      // I've even made a `drawCloud` function for you, so you don't
+      // have to worry about it, and can just use it :)
+      function drawCloud(cloudX, cloudY) {
+        fill("lightblue");
+        rect(cloudX - 10, cloudY - 15, 20, 10);
+        fill("navy");
+        rect(cloudX - 20, cloudY - 5, 40, 10);
+        fill("blue");
+        rect(cloudX - 25, cloudY + 5, 50, 10);
+      }
+
+      function setup() {
+        // this stays as before
+      }
+
+      function draw()
+      {
+          background(255, 255, 255);
+          noStroke();
+          drawReindeer(rudolphX, rudolphY);
+          rudolphY = rudolphY - rudolphVelocity;
+          if (rudolphY < 0) {
+            rudolphY = 0;
+          }
+          if (rudolphY > canvasHeight) {
+            rudolphY = canvasHeight;
+          }
+
+          // remember to draw all the clouds here!
+      }
+
+      function keyPressed() {
+        if (keyCode == 80) {
+          rudolphVelocity = 5;
+        }
+        if (keyCode == 76) {
+          rudolphVelocity = -5;
+        }
+      }
+
+      function keyReleased() {
+        rudolphVelocity = 0;
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/exercise-7.js"></script>
+</body>
+</html>

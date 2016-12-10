@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Based on previous example make Rudolph move up when user presses "P"
+      and go down when user presses "L". Also, don't forget to disallow him
+      to fly outside of the game screen (both up and down).
+    </p>
+    <p>
+      You can look up key codes for "P" and "L" on
+      <a href="http://keycode.info">keycode.info</a>.
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var rudolphX;
+      var rudolphY;
+      var rudolphVelocity = 0;
+
+      function drawReindeer(reindeerX, reindeerY) {
+        // you can use your usual drawReindeer function
+      }
+
+      function setup() {
+        // you can use your regular setup function
+      }
+
+      function draw()
+      {
+          background(255, 255, 255);
+          noStroke();
+          drawReindeer(rudolphX, rudolphY);
+          rudolphY = rudolphY - rudolphVelocity;
+
+          // make sure to prevent rudolph from leaving the game screen !!!
+      }
+
+      function keyPressed() {
+        // make sure to make a decision about rudolph's velocity (direction)
+        // based on which key was pressed.
+      }
+
+      function keyReleased() {
+        rudolphVelocity = 0;
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/exercise-5.js"></script>
+</body>
+</html>

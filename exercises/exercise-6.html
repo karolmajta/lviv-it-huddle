@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Based on previous example make rudolph's legs move when he flies up
+      and down. You migth want to check out functions
+      <a href="https://p5js.org/reference/#/p5/sin">sin()</a>
+      and <a href="https://p5js.org/reference/#/p5/cos">cos()</a>
+    </p>
+    <p>
+      Feel free to get inspired by the template below :)
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var rudolphX;
+      var rudolphY;
+      var rudolphVelocity = 0;
+
+      function drawReindeer(reindeerX, reindeerY) {
+        // figure out where we draw reindeers legs and make them move
+        // based on where he is on the screen :)
+
+        fill("brown");
+        rect(reindeerX-20, reindeerY, 10, 60);
+        rect(reindeerX+10, reindeerY, 10, 60);
+        fill("peru");
+        rect(reindeerX-40, reindeerY-30, 80, 60);
+        rect(reindeerX+20, reindeerY-40, 20, 15);
+        rect(reindeerX+20, reindeerY-60, 50, 25);
+        fill("black");
+        rect(reindeerX+5, reindeerY-65, 20, 10);
+        rect(reindeerX+5, reindeerY-75, 10, 15);
+        fill("red");
+        rect(reindeerX+65, reindeerY-65, 10, 10);
+        fill("sienna");
+        rect(reindeerX-35, reindeerY+15, 10, 60);
+        rect(reindeerX+25, reindeerY+15, 10, 60);
+      }
+
+      function setup() {
+        // as before
+      }
+
+      function draw()
+      {
+        // as before
+      }
+
+      function keyPressed() {
+        // as before
+      }
+
+      function keyReleased() {
+        // as before
+      }
+
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/exercise-6.js"></script>
+</body>
+</html>

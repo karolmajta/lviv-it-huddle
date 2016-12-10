@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      Variables are like "boxes" where you can store numbers, text and "stuff"
+      in general. In this example we will make our santa move by using variables.
+    </p>
+    <p>
+      In the example below we define 5 variables. We will focus on
+      "santaX", "santaY", and "santaVelocity". When we create these "boxes"
+      (variables), boxes "santaX" and "santaY" are empty, we put "0" to box
+      named "santaVelocity".
+    </p>
+    <p>
+      "setup" is a function that is called once, when the game starts (when
+      you reload the page) - you can ignore most of it, but focus on last two
+      lines. It puts things into "santaX" and "santaY" boxes. It says, that
+      box "santaX" should contain "canvasWidth/2" (half the width of screen)
+      and "santaY" should contain "canvasHeight/2". After setup is called:
+    </p>
+    <ul>
+      <li><strong>santaX</strong> contains a number that is half the width of screen</li>
+      <li><strong>santaY</strong> contains a number that is half the height of screen</li>
+      <li><strong>santaVelocity</strong> contains 0</li>
+    </ul>
+    <p>
+      What does this mean? It means that Santa will be in the center of the screen.
+      And that he doesn't move (he has 0 velocity).
+    </p>
+    <p>
+      Now let's focus on "keyPressed" and "keyReleased" functions. They are also
+      like "stamps" but instead of drawing stuff they do stuff. When? "keyPressed"
+      does some stuff every time a key is pressed down on the keyboard, and
+      "keyReleased" is does something every time key is released. So in key pressed
+      we put 2 into "santaVelocity" box (this means he's now moving!), and every
+      time a key is released we put 0 into this box (this means he's resting again).
+    </p>
+    <p>
+      Last piece of the puzzle is the last line of "draw" function. It may seem
+      strange at first: <code>santaX = santaX + santaVelocity</code> doesn't make
+      sense (in terms of math), right? But actually it means, "look into the value"
+      of box "santaX", look into the "value of "santaVelocity", and add them up
+      (<code>... = santaX + santaVelocity</code>) and put them back in "santaX"
+      box (<code>santaX = ...</code>). So, every time the draw function is called
+      (and it's called often!) it will fiddle with "santaX" boxes, so our santa
+      may be in slightly different place when "draw" runs again.
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+      var santaX;
+      var santaY;
+      var santaVelocity = 0;
+
+      function drawSanta(santaX, santaY) {
+        // draw the legs
+        fill(200, 0, 0);
+        rect(santaX-25, santaY+20, 10, 30)
+        rect(santaX+15, santaY+20, 10, 30)
+        // draw arms
+        fill(200, 0, 0);
+        rect(santaX-50, santaY-20, 100, 10);
+        // draw the head
+        fill(255, 227, 159);
+        rect(santaX-15, santaY-60, 30, 30);
+        // draw the torso
+        fill(230, 0, 0);
+        rect(santaX-30, santaY-30, 60, 60);
+        // draw the beard
+        fill("lightgrey");
+        rect(santaX-15, santaY-35, 30, 40);
+        // draw the hat
+        fill(230, 0, 0);
+        rect(santaX-20, santaY-75, 40, 20);
+        rect(santaX-30, santaY-85, 40, 10);
+      }
+
+      function setup() {
+        var parent = document.getElementById('game-container');
+        canvasWidth = parent.clientWidth;
+        canvasHeight = parent.clientHeight;
+        var canvas = createCanvas(canvasWidth, canvasHeight);
+        canvas.parent('game-container');
+        santaX = canvasWidth/2;
+        santaY = canvasHeight/2;
+      }
+
+      function draw() {
+          background(255, 255, 255);
+          noStroke();
+          drawSanta(santaX, santaY);
+
+          // here we update content of our "boxes" (variables), so that it changes
+          // over time
+          santaX = santaX + santaVelocity;
+      }
+
+      function keyPressed() {
+        santaVelocity = 2;
+      }
+
+      function keyReleased() {
+        santaVelocity = 0;
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/example-4.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lviv IT Huddle: Gamedev</title>
+    <meta name="description" content="Lviv IT Huddle">
+    <link rel="stylesheet" href="../css/bootswatch.css">
+    <style>
+      .col-left, .col-right {
+        width: 50%;
+        min-height :100vh;
+      }
+      .col-left {
+        padding: 20px;
+        font-size: 1.2em;
+        background: lightgrey;
+      }
+      .col-right {
+        position: fixed;
+        right: 0; top: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="col-left">
+    <p>
+      So, you have drawn something once, but you don't want to go through
+      all the same struggle again if you wanted to draw it again in a different
+      place? JavaScript can help you with that, with a thing called "function".
+    </p>
+    <p>
+      Drawing a reindeer is like drawing a picture. Making a function that
+      can draw a reindeer is like creating a stamp that you can use any
+      time you need one. You can stamp it any place and any time you want :)
+    </p>
+    <pre>
+      var canvasWidth;
+      var canvasHeight;
+
+      function drawSanta(santaX, santaY) {
+        // draw the legs
+        fill(200, 0, 0);
+        rect(santaX-25, santaY+20, 10, 30)
+        rect(santaX+15, santaY+20, 10, 30)
+        // draw arms
+        fill(200, 0, 0);
+        rect(santaX-50, santaY-20, 100, 10);
+        // draw the head
+        fill(255, 227, 159);
+        rect(santaX-15, santaY-60, 30, 30);
+        // draw the torso
+        fill(230, 0, 0);
+        rect(santaX-30, santaY-30, 60, 60);
+        // draw the beard
+        fill("lightgrey");
+        rect(santaX-15, santaY-35, 30, 40);
+        // draw the hat
+        fill(230, 0, 0);
+        rect(santaX-20, santaY-75, 40, 20);
+        rect(santaX-30, santaY-85, 40, 10);
+      }
+
+      function setup() {
+        var parent = document.getElementById('game-container');
+        canvasWidth = parent.clientWidth;
+        canvasHeight = parent.clientHeight;
+        var canvas = createCanvas(canvasWidth, canvasHeight);
+        canvas.parent('game-container');
+        santaX = canvasWidth/2;
+        santaY = canvasHeight/2;
+      }
+
+      function draw()
+      {
+          background(255, 255, 255);
+          noStroke();
+          drawSanta(200, 200);
+          drawSanta(500, 500);
+      }
+    </pre>
+  </div>
+  <div class=col-right id="game-container">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
+  <script src="../js/exercises/example-3.js"></script>
+</body>
+</html>
